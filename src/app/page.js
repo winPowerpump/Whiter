@@ -112,14 +112,14 @@ export default function Home() {
     <AuroraBackground>
       <div className="h-full w-full relative">
         {/* Navbar */}
-        <nav className="flex items-center justify-between px-8 py-4 absolute top-6 left-1/2 -translate-x-1/2 w-[85%]">
+        <nav className="flex items-center justify-between px-8 py-4 absolute top-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[85%]">
           {/* Logo - Left */}
           <div className="flex-shrink-0">
             <img src="Witer.png" alt="Whiter" className="h-10" />
           </div>
 
           {/* Middle Navigation - Fully Rounded */}
-          <div className="flex items-center gap-8 px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-gray-700">
+          <div className="hidden md:flex items-center gap-8 px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-gray-700">
             <button 
               onClick={handleCopy}
               className="flex items-center gap-2 text-white font-medium group cursor-pointer"
@@ -149,8 +149,8 @@ export default function Home() {
         </nav>
 
         {/* Rest of your content */}
-        <div className="grid justify-center mt-[14%]">
-          <div className="text-white text-5xl mx-[15%] text-balance text-center">
+        <div className="grid justify-center mt-[30%] md:mt-[14%]">
+          <div className="text-white text-3xl md:text-5xl mx-[15%] text-balance text-center">
             Trade perpetuals with unmatched fairness and safety.
           </div>
           <div className="text-gray-100 mx-[22%] text-balance text-center mt-4">
@@ -162,9 +162,9 @@ export default function Home() {
             </a>
           </div>
           <div className="flex justify-center my-8">
-            <img src="hero.png" className="w-[65%] border-2 border-gray-700 p-1 rounded-xl" alt="Hero" />
+            <img src="hero.png" className="w-[85%] md:w-[65%] border-2 border-gray-700 p-1 rounded-xl" alt="Hero" />
           </div>
-          <div className="text-gray-100 mx-[30%] text-balance text-center my-4 font-bold text-xl">
+          <div className="text-gray-100 mx-[5%] md:mx-[30%] text-balance text-center my-4 font-bold text-xl">
             Our mission is to revolutionize trading by building provably fair, secure, and scalable infrastructure for finance.
           </div>
           
