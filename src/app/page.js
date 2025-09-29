@@ -10,7 +10,7 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [openIndex, setOpenIndex] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
-  const fullContractAddress = "XXXpump"; // Replace with full address
+  const fullContractAddress = "6kwXXG7JSN8Sx5JMUE72b5Jc9iqUngZjXrFWbdbBpump"; // Replace with full address
   
   // Truncate contract address for display
   const truncateAddress = (address) => {
