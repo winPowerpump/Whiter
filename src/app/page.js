@@ -149,11 +149,11 @@ export default function Home() {
         </nav>
 
         {/* Rest of your content */}
-        <div className="grid justify-center mt-[30%] md:mt-[14%]">
-          <div className="text-white text-3xl md:text-5xl mx-[15%] text-balance text-center">
+        <div className="grid justify-center mt-[30%] md:mt-[14%] xl:mt-[10%]">
+          <div className="text-white text-3xl md:text-5xl mx-[15%] xl:mx-[25%] text-balance text-center">
             Trade perpetuals with unmatched fairness and safety.
           </div>
-          <div className="text-gray-100 mx-[22%] text-balance text-center mt-4">
+          <div className="text-gray-100 mx-[22%] xl:mx-[30%] text-balance text-center mt-4">
             Experience the next generation of trading with Whiter, where every trade is treated as first class. Be right, trade white.
           </div>
           <div className="flex justify-center">
