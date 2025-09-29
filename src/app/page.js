@@ -61,7 +61,7 @@ export default function Home() {
       role: "Strategic Advisor",
       initials: "ET",
       pfp: "eric.jpg",
-      text: "A white first platform will benefit the entire space. that's why I joined Whiter as the next-gen perp platform. DJT approves"
+      text: "A white first platform will benefit the entire space. That's why I joined Whiter as the next-gen perp platform. DJT approves"
     },
     {
       name: "Kyle Davies",
