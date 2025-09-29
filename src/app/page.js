@@ -245,7 +245,7 @@ export default function Home() {
           </div>
           
           <div className="flex justify-center">
-            <img src="W.png" className="w-[20%]" alt="W Logo" />
+            <img src="W2.png" className="w-[20%]" alt="W Logo" />
           </div>
           <div className="text-gray-400 text-balance text-center mt-4 mb-2 font-bold text-[10px]">
             Copyright © Whiter 2025
