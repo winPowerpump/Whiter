@@ -131,9 +131,12 @@ export default function Home() {
               )}
               <span className="text-sm">{contractAddress}</span>
             </button>
-            <a href="#" className="text-white hover:text-gray-300 transition-colors font-medium">
+            <button 
+              onClick={() => document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-white hover:text-gray-300 transition-colors font-medium cursor-pointer"
+            >
               FAQ
-            </a>
+            </button>
             <a href="https://x.com/Whiter_exc" className="text-white hover:text-gray-300 transition-colors font-medium">
               X/Twitter
             </a>
@@ -166,7 +169,7 @@ export default function Home() {
           </div>
           
           {/* FAQ Section */}
-          <div className="max-w-3xl mx-auto w-full px-8 my-8">
+          <div id="faq-section" className="max-w-3xl mx-auto w-full px-8 my-8">
             <h2 className="text-white text-4xl font-bold text-center mb-8">
               FAQs
             </h2>
