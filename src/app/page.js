@@ -75,14 +75,14 @@ export default function Home() {
       role: "Top VC",
       initials: "MA",
       pfp: "marc.webp",
-      text: "The security and transparency on Whiter give me peace of mind. I can focus on my strategies without worrying about platform risks."
+      text: "The security and transparency on Whiter give me peace of mind. I can focus on my strategies without worrying about platform risks"
     },
     {
       name: "Matt Huang",
       role: "Legendary VC",
       initials: "MH",
       pfp: "matt.jpeg",
-      text: "Whiter's execution speed is unmatched. Every millisecond counts in trading, and this platform delivers consistently."
+      text: "Whiter's execution speed is unmatched. Every millisecond counts in trading, and this platform delivers consistently"
     },
     {
       name: "Sam Bankman-Fried",
