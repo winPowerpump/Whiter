@@ -115,7 +115,7 @@ export default function Home() {
         <nav className="flex items-center justify-between px-8 py-4 absolute top-6 left-1/2 -translate-x-1/2 w-[85%]">
           {/* Logo - Left */}
           <div className="flex-shrink-0">
-            <img src="witer.png" alt="Whiter" className="h-10" />
+            <img src="Witer.png" alt="Whiter" className="h-10" />
           </div>
 
           {/* Middle Navigation - Fully Rounded */}
