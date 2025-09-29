@@ -162,7 +162,7 @@ export default function Home() {
             </a>
           </div>
           <div className="flex justify-center my-8">
-            <img src="hero.png" className="w-[85%] md:w-[65%] border-2 border-gray-700 p-1 rounded-xl" alt="Hero" />
+            <img src="her0.png" className="w-[85%] md:w-[65%] border-2 border-gray-700 p-1 rounded-xl" alt="Hero" />
           </div>
           <div className="text-gray-100 mx-[5%] md:mx-[30%] text-balance text-center my-4 font-bold text-xl">
             Our mission is to revolutionize trading by building provably fair, secure, and scalable infrastructure for finance.
