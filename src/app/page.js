@@ -140,7 +140,7 @@ export default function Home() {
           </div>
 
           {/* Launch App Button - Right */}
-          <a href="https://whiter.app/perp/PERP_PUMP_USDC" className="flex-shrink-0 px-6 py-2.5 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition-colors">
+          <a href="https://whiter.app" className="flex-shrink-0 px-6 py-2.5 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition-colors">
             Launch App
           </a>
         </nav>
@@ -154,7 +154,7 @@ export default function Home() {
             Experience the next generation of trading with Whiter, where every trade is treated as first class. Be right, trade white.
           </div>
           <div className="flex justify-center">
-            <a href="https://whiter.app/perp/PERP_PUMP_USDC" className="whitespace-nowrap w-min h-min mt-4 px-7 py-3 rounded-full bg-white font-bold">
+            <a href="https://whiter.app" className="whitespace-nowrap w-min h-min mt-4 px-7 py-3 rounded-full bg-white font-bold">
               Launch App
             </a>
           </div>
