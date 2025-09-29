@@ -1,103 +1,257 @@
-import Image from "next/image";
+"use client"
+
+import { AuroraBackground } from "./components/ui/aurora-background";
+import { useState } from "react";
+import { Copy, Check, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import Marquee from "react-fast-marquee";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [copied, setCopied] = useState(false);
+  const [openIndex, setOpenIndex] = useState(null);
+  const [imageErrors, setImageErrors] = useState({});
+  const fullContractAddress = "XXXpump"; // Replace with full address
+  
+  // Truncate contract address for display
+  const truncateAddress = (address) => {
+    return `${address.slice(0, 3)}...${address.slice(-4)}`;
+  };
+  
+  const contractAddress = truncateAddress(fullContractAddress);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+  const handleCopy = () => {
+    navigator.clipboard.writeText(fullContractAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const faqData = [
+    {
+      question: "What is Whiter?",
+      answer: "Whiter is a next-generation perpetual trading platform that prioritizes fairness, security, and scalability. We provide a trading environment where every trade is treated with equal importance and transparency."
+    },
+    {
+      question: "How does Whiter ensure fair trading?",
+      answer: "Whiter uses provably fair infrastructure and transparent mechanisms to ensure all traders have equal access and opportunity. Our smart contracts are audited and our order matching is designed to prevent manipulation."
+    },
+    {
+      question: "What are perpetuals?",
+      answer: "Perpetual futures are derivative contracts that allow you to trade the price of an asset without an expiration date. Unlike traditional futures, perpetuals can be held indefinitely, making them ideal for both short-term and long-term trading strategies."
+    },
+    {
+      question: "Is Whiter safe to use?",
+      answer: "Security is our top priority. Whiter employs industry-leading security practices including smart contract audits, secure key management, and robust infrastructure to protect user funds and data."
+    },
+    {
+      question: "How do I get started?",
+      answer: "Simply click 'Launch App', connect your wallet, and you can start trading immediately. We support major wallets and provide comprehensive documentation to help you get started with perpetual trading."
+    }
+  ];
+
+  const reviewCards = [
+    {
+      name: "Changpang Zhao",
+      role: "Shadow Founder",
+      initials: "CZ",
+      pfp: "cz.webp",
+      text: "Legally I have no part in this, but we need a white first perps platform. I use Whiter. If you are Chinese or American this is something we can unite with"
+    },
+    {
+      name: "Eric Trump",
+      role: "Strategic Advisor",
+      initials: "ET",
+      pfp: "eric.jpg",
+      text: "A white first platform will benefit the entire space. that's why I joined Whiter as the next-gen perp platform. DJT approves"
+    },
+    {
+      name: "Kyle Davies",
+      role: "Professional Trader",
+      initials: "KD",
+      pfp: "kyle.jpg",
+      text: "Fills so good you have to try to blow yourself up. Me and my team are solely trading on Whiter"
+    },
+    {
+      name: "Marc Andreessen",
+      role: "Top VC",
+      initials: "MA",
+      pfp: "marc.webp",
+      text: "The security and transparency on Whiter give me peace of mind. I can focus on my strategies without worrying about platform risks."
+    },
+    {
+      name: "Matt Huang",
+      role: "Legendary VC",
+      initials: "MH",
+      pfp: "matt.jpeg",
+      text: "Whiter's execution speed is unmatched. Every millisecond counts in trading, and this platform delivers consistently."
+    },
+    {
+      name: "Sam Bankman-Fried",
+      role: "Investment Icon",
+      initials: "SBF",
+      pfp: "sam.jpg",
+      text: "As someone managing substantial positions, I appreciate Whiter's commitment to fair trading. I plan to attend the Whiter event in 2050 to show support"
+    },
+    {
+      name: "Tom Brady",
+      role: "Crypto Enthusiast",
+      initials: "TB",
+      pfp: "tom.jpg",
+      text: "I have a lot of rings and am a famous white person. Buy crypto with Whiter today! Even my ex uses Whiter"
+    }
+  ];
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const handleImageError = (index) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+  };
+
+  return (
+    <AuroraBackground>
+      <div className="h-full w-full relative">
+        {/* Navbar */}
+        <nav className="flex items-center justify-between px-8 py-4 absolute top-6 left-1/2 -translate-x-1/2 w-[85%]">
+          {/* Logo - Left */}
+          <div className="flex-shrink-0">
+            <img src="witer.png" alt="Whiter" className="h-10" />
+          </div>
+
+          {/* Middle Navigation - Fully Rounded */}
+          <div className="flex items-center gap-8 px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full border border-gray-700">
+            <button 
+              onClick={handleCopy}
+              className="flex items-center gap-2 text-white font-medium group cursor-pointer"
+            >
+              {copied ? (
+                <Check className="w-4 h-4 text-green-400" />
+              ) : (
+                <Copy className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              )}
+              <span className="text-sm">{contractAddress}</span>
+            </button>
+            <a href="#" className="text-white hover:text-gray-300 transition-colors font-medium">
+              FAQ
+            </a>
+            <a href="https://x.com/Whiter_exc" className="text-white hover:text-gray-300 transition-colors font-medium">
+              X/Twitter
+            </a>
+          </div>
+
+          {/* Launch App Button - Right */}
+          <a href="https://whiter.app/perp/PERP_PUMP_USDC" className="flex-shrink-0 px-6 py-2.5 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition-colors">
+            Launch App
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        </nav>
+
+        {/* Rest of your content */}
+        <div className="grid justify-center mt-[14%]">
+          <div className="text-white text-5xl mx-[15%] text-balance text-center">
+            Trade perpetuals with unmatched fairness and safety.
+          </div>
+          <div className="text-gray-100 mx-[22%] text-balance text-center mt-4">
+            Experience the next generation of trading with Whiter, where every trade is treated as first class. Be right, trade white.
+          </div>
+          <div className="flex justify-center">
+            <a href="https://whiter.app/perp/PERP_PUMP_USDC" className="whitespace-nowrap w-min h-min mt-4 px-7 py-3 rounded-full bg-white font-bold">
+              Launch App
+            </a>
+          </div>
+          <div className="flex justify-center my-8">
+            <img src="hero.png" className="w-[65%] border-2 border-gray-700 p-1 rounded-xl" alt="Hero" />
+          </div>
+          <div className="text-gray-100 mx-[30%] text-balance text-center my-4 font-bold text-xl">
+            Our mission is to revolutionize trading by building provably fair, secure, and scalable infrastructure for finance.
+          </div>
+          
+          {/* FAQ Section */}
+          <div className="max-w-3xl mx-auto w-full px-8 my-8">
+            <h2 className="text-white text-4xl font-bold text-center mb-8">
+              FAQs
+            </h2>
+            <div className="space-y-4">
+              {faqData.map((faq, index) => (
+                <div 
+                  key={index}
+                  className="bg-white/5 backdrop-blur-sm rounded-lg border border-gray-700 overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleAccordion(index)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left"
+                  >
+                    <span className="text-white font-semibold text-lg">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: openIndex === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="w-5 h-5 text-gray-400 cursor-pointer" />
+                    </motion.div>
+                  </button>
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <div className="px-6 pb-4 text-gray-300">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Trusted By Section */}
+          <div className="w-full my-12 overflow-hidden">
+            <h2 className="text-white text-4xl font-bold text-center mb-8">
+              Trusted By
+            </h2>
+            <div className="w-full overflow-hidden">
+              <Marquee gradient={false} speed={40}>
+                {reviewCards.map((review, index) => (
+                  <div 
+                    key={index}
+                    className="mx-4 w-80 h-52 bg-white/5 backdrop-blur-sm rounded-lg border border-gray-700 p-6 flex-shrink-0 flex flex-col"
+                  >
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                          <img 
+                            src={review.pfp} 
+                            alt={review.name}
+                            className="w-full h-full object-cover"
+                            onError={() => handleImageError(index)}
+                          />
+                      </div>
+                      <div>
+                        <div className="text-white font-semibold">{review.name}</div>
+                        <div className="text-gray-400 text-sm">{review.role}</div>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed flex-1 overflow-hidden">
+                      {review.text}
+                    </p>
+                  </div>
+                ))}
+              </Marquee>
+            </div>
+          </div>
+          
+          <div className="flex justify-center">
+            <img src="W.png" className="w-[20%]" alt="W Logo" />
+          </div>
+          <div className="text-gray-400 text-balance text-center mt-4 mb-2 font-bold text-[10px]">
+            Copyright © Whiter 2025
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </AuroraBackground>
   );
 }
